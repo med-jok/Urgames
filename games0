@@ -1,0 +1,122 @@
+import zipfile
+import os
+
+# Create a directory to hold the landing page files
+base_path = "/mnt/data/CPA_Styled_Landing_Page"
+os.makedirs(base_path, exist_ok=True)
+
+# Create the HTML content
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Landing Page</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Play & Win Prizes!</h1>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+1" alt="Game 1">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+2" alt="Game 2">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+3" alt="Game 3">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+4" alt="Game 4">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+5" alt="Game 5">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/150x100?text=Game+6" alt="Game 6">
+        <a href="#" class="btn">Play Now</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+"""
+
+# Create the CSS content
+css_content = """
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #1e1e2f;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: #ff0057;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e6004c;
+}
+"""
+
+# Save HTML and CSS to files
+html_path = os.path.join(base_path, "index.html")
+css_path = os.path.join(base_path, "style.css")
+
+with open(html_path, "w") as f:
+    f.write(html_content)
+
+with open(css_path, "w") as f:
+    f.write(css_content)
+
+# Zip the folder
+zip_path = "/mnt/data/CPA_Game_Styled_Landing.zip"
+with zipfile.ZipFile(zip_path, 'w') as zipf:
+    zipf.write(html_path, arcname="index.html")
+    zipf.write(css_path, arcname="style.css")
+
+zip_path
